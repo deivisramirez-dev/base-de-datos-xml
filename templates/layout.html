@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}XML Commerce{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f6f8fb; color: #1f2937; }
+        header { background: #0f3b63; color: white; padding: 18px 32px; }
+        nav a { color: white; margin-right: 16px; text-decoration: none; font-weight: bold; }
+        main { padding: 32px; }
+        table { border-collapse: collapse; width: 100%; background: white; }
+        th, td { border: 1px solid #d1d5db; padding: 10px; text-align: left; }
+        th { background: #e5e7eb; }
+        .card { background: white; border: 1px solid #d1d5db; border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+        .ok { color: #047857; font-weight: bold; }
+        .error { color: #b91c1c; font-weight: bold; }
+        a { color: #0f3b63; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>XML Commerce</h1>
+    <nav>
+        <a href="/">Inicio</a>
+        <a href="/validate">Validación</a>
+        <a href="/products">Productos</a>
+        <a href="/customers">Clientes</a>
+        <a href="/orders">Órdenes</a>
+        <a href="/inventory">Inventario</a>
+        <a href="/transform/products">XSLT Productos</a>
+    </nav>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

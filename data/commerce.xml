@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commerce xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="commerce.xsd">
+
+    <customers>
+        <customer customer_id="1">
+            <email_address>ana.torres@example.com</email_address>
+            <full_name>Ana Torres</full_name>
+        </customer>
+        <customer customer_id="2">
+            <email_address>carlos.ruiz@example.com</email_address>
+            <full_name>Carlos Ruiz</full_name>
+        </customer>
+        <customer customer_id="3">
+            <email_address>lucia.mendez@example.com</email_address>
+            <full_name>Lucía Méndez</full_name>
+        </customer>
+    </customers>
+
+    <stores>
+        <store store_id="10">
+            <store_name>Tienda Central</store_name>
+            <web_address>https://central.example.com</web_address>
+            <physical_address>Calle 10 #25-30, Bogotá</physical_address>
+            <latitude>4.710989</latitude>
+            <longitude>-74.072092</longitude>
+            <logo>central-logo.png</logo>
+            <logo_mime_type>image/png</logo_mime_type>
+            <logo_charset>UTF-8</logo_charset>
+            <logo_filename>central-logo.png</logo_filename>
+            <logo_last_updated>2026-05-01T10:00:00</logo_last_updated>
+        </store>
+        <store store_id="11">
+            <store_name>Tienda Norte</store_name>
+            <web_address>https://norte.example.com</web_address>
+            <physical_address>Carrera 7 #120-45, Bogotá</physical_address>
+            <latitude>4.728358</latitude>
+            <longitude>-74.042786</longitude>
+            <logo>norte-logo.png</logo>
+            <logo_mime_type>image/png</logo_mime_type>
+            <logo_charset>UTF-8</logo_charset>
+            <logo_filename>norte-logo.png</logo_filename>
+            <logo_last_updated>2026-05-02T14:30:00</logo_last_updated>
+        </store>
+    </stores>
+
+    <products>
+        <product product_id="101">
+            <product_name>Teclado mecánico</product_name>
+            <unit_price>45.90</unit_price>
+            <product_details>Teclado mecánico RGB con distribución en español.</product_details>
+            <product_image>keyboard.png</product_image>
+            <image_mime_type>image/png</image_mime_type>
+            <image_charset>UTF-8</image_charset>
+            <image_filename>keyboard.png</image_filename>
+            <image_last_updated>2026-04-25T08:00:00</image_last_updated>
+        </product>
+        <product product_id="102">
+            <product_name>Mouse inalámbrico</product_name>
+            <unit_price>19.99</unit_price>
+            <product_details>Mouse ergonómico silencioso, conexión Bluetooth.</product_details>
+            <product_image>mouse.png</product_image>
+            <image_mime_type>image/png</image_mime_type>
+            <image_charset>UTF-8</image_charset>
+            <image_filename>mouse.png</image_filename>
+            <image_last_updated>2026-04-26T09:15:00</image_last_updated>
+        </product>
+        <product product_id="103">
+            <product_name>Monitor 27 pulgadas</product_name>
+            <unit_price>249.00</unit_price>
+            <product_details>IPS 75 Hz, compatible con montaje VESA.</product_details>
+            <product_image>monitor.png</product_image>
+            <image_mime_type>image/png</image_mime_type>
+            <image_charset>UTF-8</image_charset>
+            <image_filename>monitor.png</image_filename>
+            <image_last_updated>2026-04-27T11:00:00</image_last_updated>
+        </product>
+        <product product_id="104">
+            <product_name>Hub USB-C</product_name>
+            <unit_price>12.50</unit_price>
+            <product_details>4 puertos USB-A y lector de tarjetas SD.</product_details>
+            <product_image>hub.png</product_image>
+            <image_mime_type>image/png</image_mime_type>
+            <image_charset>UTF-8</image_charset>
+            <image_filename>hub.png</image_filename>
+            <image_last_updated>2026-04-28T16:45:00</image_last_updated>
+        </product>
+    </products>
+
+    <orders>
+        <order order_id="5001">
+            <order_datetime>2026-05-12T19:30:00</order_datetime>
+            <customer_id>1</customer_id>
+            <order_status>SHIPPED</order_status>
+            <store_id>10</store_id>
+            <items>
+                <item line_item_id="1">
+                    <product_id>101</product_id>
+                    <unit_price>45.90</unit_price>
+                    <quantity>2</quantity>
+                    <shipment_id>9001</shipment_id>
+                </item>
+            </items>
+        </order>
+        <order order_id="5002">
+            <order_datetime>2026-05-11T10:15:00</order_datetime>
+            <customer_id>2</customer_id>
+            <order_status>PAID</order_status>
+            <store_id>11</store_id>
+            <items>
+                <item line_item_id="1">
+                    <product_id>102</product_id>
+                    <unit_price>19.99</unit_price>
+                    <quantity>1</quantity>
+                    <shipment_id>9002</shipment_id>
+                </item>
+                <item line_item_id="2">
+                    <product_id>104</product_id>
+                    <unit_price>12.50</unit_price>
+                    <quantity>2</quantity>
+                    <shipment_id>9002</shipment_id>
+                </item>
+            </items>
+        </order>
+        <order order_id="5003">
+            <order_datetime>2026-05-10T08:00:00</order_datetime>
+            <customer_id>3</customer_id>
+            <order_status>DELIVERED</order_status>
+            <store_id>10</store_id>
+            <items>
+                <item line_item_id="1">
+                    <product_id>103</product_id>
+                    <unit_price>249.00</unit_price>
+                    <quantity>1</quantity>
+                    <shipment_id>9003</shipment_id>
+                </item>
+            </items>
+        </order>
+    </orders>
+
+    <shipments>
+        <shipment shipment_id="9001">
+            <store_id>10</store_id>
+            <customer_id>1</customer_id>
+            <delivery_address>Carrera 15 #80-20, Bogotá</delivery_address>
+            <shipment_status>IN_TRANSIT</shipment_status>
+        </shipment>
+        <shipment shipment_id="9002">
+            <store_id>11</store_id>
+            <customer_id>2</customer_id>
+            <delivery_address>Avenida 68 #24-10, Bogotá</delivery_address>
+            <shipment_status>PREPARING</shipment_status>
+        </shipment>
+        <shipment shipment_id="9003">
+            <store_id>10</store_id>
+            <customer_id>3</customer_id>
+            <delivery_address>Calle 93 #11-28, Bogotá</delivery_address>
+            <shipment_status>DELIVERED</shipment_status>
+        </shipment>
+    </shipments>
+
+    <inventory>
+        <inventory_item inventory_id="3001">
+            <store_id>10</store_id>
+            <product_id>101</product_id>
+            <product_inventory>25</product_inventory>
+        </inventory_item>
+        <inventory_item inventory_id="3002">
+            <store_id>10</store_id>
+            <product_id>102</product_id>
+            <product_inventory>40</product_inventory>
+        </inventory_item>
+        <inventory_item inventory_id="3003">
+            <store_id>10</store_id>
+            <product_id>103</product_id>
+            <product_inventory>12</product_inventory>
+        </inventory_item>
+        <inventory_item inventory_id="3004">
+            <store_id>10</store_id>
+            <product_id>104</product_id>
+            <product_inventory>100</product_inventory>
+        </inventory_item>
+        <inventory_item inventory_id="3005">
+            <store_id>11</store_id>
+            <product_id>101</product_id>
+            <product_inventory>18</product_inventory>
+        </inventory_item>
+        <inventory_item inventory_id="3006">
+            <store_id>11</store_id>
+            <product_id>102</product_id>
+            <product_inventory>35</product_inventory>
+        </inventory_item>
+        <inventory_item inventory_id="3007">
+            <store_id>11</store_id>
+            <product_id>103</product_id>
+            <product_inventory>5</product_inventory>
+        </inventory_item>
+        <inventory_item inventory_id="3008">
+            <store_id>11</store_id>
+            <product_id>104</product_id>
+            <product_inventory>80</product_inventory>
+        </inventory_item>
+    </inventory>
+</commerce>

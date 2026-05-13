@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="OrderStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="PAID"/>
+            <xs:enumeration value="SHIPPED"/>
+            <xs:enumeration value="DELIVERED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ShipmentStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PREPARING"/>
+            <xs:enumeration value="IN_TRANSIT"/>
+            <xs:enumeration value="DELIVERED"/>
+            <xs:enumeration value="RETURNED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="commerce">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customers">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="customer" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="email_address" type="xs:string"/>
+                                        <xs:element name="full_name" type="xs:string"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="customer_id" type="xs:positiveInteger" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="stores">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="store" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="store_name" type="xs:string"/>
+                                        <xs:element name="web_address" type="xs:anyURI" minOccurs="0"/>
+                                        <xs:element name="physical_address" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="latitude" type="xs:decimal" minOccurs="0"/>
+                                        <xs:element name="longitude" type="xs:decimal" minOccurs="0"/>
+                                        <xs:element name="logo" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="logo_mime_type" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="logo_charset" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="logo_filename" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="logo_last_updated" type="xs:dateTime" minOccurs="0"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="store_id" type="xs:positiveInteger" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="products">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="product" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="product_name" type="xs:string"/>
+                                        <xs:element name="unit_price" type="xs:decimal"/>
+                                        <xs:element name="product_details" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="product_image" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="image_mime_type" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="image_charset" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="image_filename" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="image_last_updated" type="xs:dateTime" minOccurs="0"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="product_id" type="xs:positiveInteger" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="orders">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="order" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="order_datetime" type="xs:dateTime"/>
+                                        <xs:element name="customer_id" type="xs:positiveInteger"/>
+                                        <xs:element name="order_status" type="OrderStatusType"/> <!-- TODO: prueba qué ocurre si usas un estado no permitido. -->
+                                        <xs:element name="store_id" type="xs:positiveInteger"/>
+                                        <xs:element name="items">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="item" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="product_id" type="xs:positiveInteger"/>
+                                                                <xs:element name="unit_price" type="xs:decimal"/>
+                                                                <xs:element name="quantity" type="xs:positiveInteger"/>
+                                                                <xs:element name="shipment_id" type="xs:positiveInteger"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="line_item_id" type="xs:positiveInteger" use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="order_id" type="xs:positiveInteger" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="shipments">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="shipment" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="store_id" type="xs:positiveInteger"/>
+                                        <xs:element name="customer_id" type="xs:positiveInteger"/>
+                                        <xs:element name="delivery_address" type="xs:string"/>
+                                        <xs:element name="shipment_status" type="ShipmentStatusType"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="shipment_id" type="xs:positiveInteger" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="inventory">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="inventory_item" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="store_id" type="xs:positiveInteger"/>
+                                        <xs:element name="product_id" type="xs:positiveInteger"/>
+                                        <xs:element name="product_inventory" type="xs:nonNegativeInteger"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="inventory_id" type="xs:positiveInteger" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:key name="customerKey">
+            <xs:selector xpath="customers/customer"/>
+            <xs:field xpath="@customer_id"/>
+        </xs:key>
+        <xs:key name="storeKey">
+            <xs:selector xpath="stores/store"/>
+            <xs:field xpath="@store_id"/>
+        </xs:key>
+        <xs:key name="productKey">
+            <xs:selector xpath="products/product"/>
+            <xs:field xpath="@product_id"/>
+        </xs:key>
+        <xs:key name="orderKey">
+            <xs:selector xpath="orders/order"/>
+            <xs:field xpath="@order_id"/>
+        </xs:key>
+        <xs:key name="shipmentKey">
+            <xs:selector xpath="shipments/shipment"/>
+            <xs:field xpath="@shipment_id"/>
+        </xs:key>
+        <xs:key name="inventoryKey">
+            <xs:selector xpath="inventory/inventory_item"/>
+            <xs:field xpath="@inventory_id"/>
+        </xs:key>
+
+        <!-- TODO: Revisa las restricciones de integridad referencial con xs:keyref. -->
+        <xs:keyref name="orderCustomerRef" refer="customerKey">
+            <xs:selector xpath="orders/order"/>
+            <xs:field xpath="customer_id"/>
+        </xs:keyref>
+        <xs:keyref name="orderStoreRef" refer="storeKey">
+            <xs:selector xpath="orders/order"/>
+            <xs:field xpath="store_id"/>
+        </xs:keyref>
+        <xs:keyref name="itemProductRef" refer="productKey">
+            <xs:selector xpath="orders/order/items/item"/>
+            <xs:field xpath="product_id"/>
+        </xs:keyref>
+        <xs:keyref name="itemShipmentRef" refer="shipmentKey">
+            <xs:selector xpath="orders/order/items/item"/>
+            <xs:field xpath="shipment_id"/>
+        </xs:keyref>
+        <xs:keyref name="shipmentStoreRef" refer="storeKey">
+            <xs:selector xpath="shipments/shipment"/>
+            <xs:field xpath="store_id"/>
+        </xs:keyref>
+        <xs:keyref name="shipmentCustomerRef" refer="customerKey">
+            <xs:selector xpath="shipments/shipment"/>
+            <xs:field xpath="customer_id"/>
+        </xs:keyref>
+        <xs:keyref name="inventoryStoreRef" refer="storeKey">
+            <xs:selector xpath="inventory/inventory_item"/>
+            <xs:field xpath="store_id"/>
+        </xs:keyref>
+        <xs:keyref name="inventoryProductRef" refer="productKey">
+            <xs:selector xpath="inventory/inventory_item"/>
+            <xs:field xpath="product_id"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Órdenes{% endblock %}
+{% block content %}
+<h2>Órdenes</h2>
+<table>
+    <tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Tienda</th><th>Estado</th><th>Total</th><th>Detalle</th></tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.datetime }}</td>
+        <td>{{ order.customer }}</td>
+        <td>{{ order.store }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.total }}</td>
+        <td><a href="/orders/{{ order.id }}">Ver detalle</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

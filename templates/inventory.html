@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Inventario{% endblock %}
+{% block content %}
+<h2>Inventario por tienda</h2>
+<table>
+    <tr><th>ID inventario</th><th>Tienda</th><th>Producto</th><th>Unidades disponibles</th></tr>
+    {% for item in inventory %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.store }}</td>
+        <td>{{ item.product }}</td>
+        <td>{{ item.available_units }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
