@@ -12,7 +12,7 @@
         <td>{{ order.store }}</td>
         <td>{{ order.status }}</td>
         <td>{{ order.total }}</td>
-        <td><a href="/orders/{{ order.id }}">Ver detalle</a></td>
+        <td><a href="{{ url_for('order_detail', order_id=order.id) }}">Ver detalle</a></td>
     </tr>
     {% endfor %}
 </table>

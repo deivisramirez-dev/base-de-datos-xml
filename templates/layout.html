@@ -22,13 +22,13 @@
 <header>
     <h1>XML Commerce</h1>
     <nav>
-        <a href="/">Inicio</a>
-        <a href="/validate">Validación</a>
-        <a href="/products">Productos</a>
-        <a href="/customers">Clientes</a>
-        <a href="/orders">Órdenes</a>
-        <a href="/inventory">Inventario</a>
-        <a href="/transform/products">XSLT Productos</a>
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('validate') }}">Validación</a>
+        <a href="{{ url_for('products') }}">Productos</a>
+        <a href="{{ url_for('customers') }}">Clientes</a>
+        <a href="{{ url_for('orders') }}">Órdenes</a>
+        <a href="{{ url_for('inventory') }}">Inventario</a>
+        <a href="{{ url_for('transform_products') }}">XSLT Productos</a>
     </nav>
 </header>
 <main>

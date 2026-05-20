@@ -12,6 +12,26 @@ xml_doc = etree.parse(str(XML_PATH))
 xsl_doc = etree.parse(str(XSL_PATH))
 transform = etree.XSLT(xsl_doc)
 html_result = transform(xml_doc)
+fragment = str(html_result)
 
-OUTPUT_PATH.write_text(str(html_result), encoding="utf-8")
+OUTPUT_PATH.write_text(
+    f"""<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Productos desde XML (XSLT)</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; margin: 32px; }}
+        table {{ border-collapse: collapse; width: 100%; }}
+        th, td {{ border: 1px solid #cccccc; padding: 8px; text-align: left; }}
+        th {{ background: #eeeeee; }}
+    </style>
+</head>
+<body>
+{fragment}
+</body>
+</html>
+""",
+    encoding="utf-8",
+)
 print(f"Transformación generada en: {OUTPUT_PATH}")

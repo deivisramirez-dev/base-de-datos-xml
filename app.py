@@ -2,7 +2,7 @@ import os
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
-from flask import Flask, Response, render_template
+from flask import Flask, render_template
 from lxml import etree
 
 app = Flask(__name__)
@@ -231,7 +231,10 @@ def transform_products():
     tree = get_xml_doc()
     transform = get_xslt()
     html_result = transform(tree)
-    return Response(str(html_result), mimetype="text/html; charset=utf-8")
+    return render_template(
+        "transform_products.html",
+        xslt_content=str(html_result),
+    )
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Detalle de orden{% endblock %}
 {% block content %}
+<p><a href="{{ url_for('orders') }}">← Volver a órdenes</a></p>
 <h2>Detalle de orden {{ order.id }}</h2>
 <div class="card">
     <p><strong>Fecha:</strong> {{ order.datetime }}</p>
@@ -11,7 +12,7 @@
 </div>
 <table>
     <tr><th>Línea</th><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th><th>Envío</th></tr>
-    {% for item in order.items %}
+    {% for item in order["items"] %}
     <tr>
         <td>{{ item.line_item_id }}</td>
         <td>{{ item.product }}</td>
